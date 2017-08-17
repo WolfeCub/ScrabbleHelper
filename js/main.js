@@ -91,13 +91,16 @@ $(document).ready(function() {
                         html: '<a onclick=" currentTiles.splice(currentTiles.findIndex(o => o.val == ' + e.which + ' && o.text_mode == ' + textMode +'), 1); updateCurrentTilesHtml();"> <div class="' + (textMode ? 'numberCircle' : 'numberCircleLock') + '">' + String.fromCharCode(e.which) + '</div></a>'
                     });
                 updateCurrentTilesHtml();
-                e.preventDefault(); // prevent the default action (scroll / move)
+                e.preventDefault();
             } else if (e.which == 32) {
                 textMode = !textMode;
+                e.preventDefault();
             } else if (e.which == 13) {
                 updateResults();
+                e.preventDefault();
             } else if (e.which == 8) {
                 clearAll();
+                e.preventDefault();
             }
         });
     });
