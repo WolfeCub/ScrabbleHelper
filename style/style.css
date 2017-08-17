@@ -6,6 +6,13 @@
     font: 52px Arial, sans-serif;
 }
 
+.loading {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    font: 30px Arial, sans-serif;
+}
+
 .activeTileContainer {
     width: 80%;
     margin-right: auto;

@@ -36,13 +36,16 @@ $(document).ready(function() {
     function merge(a1, a2) {
         var hash = {};
         var arr = [];
-        for (var i = 0; i < a1.length; i++) {
+        var i = 0;
+        var l = a1.length;
+        for (; i < l; i++) {
             if (hash[a1[i]] !== true) {
                 hash[a1[i]] = true;
                 arr[arr.length] = a1[i];
             }
         }
-        for (var i = 0; i < a2.length; i++) {
+        l = a2.length;
+        for (i = 0; i < l; i++) {
             if (hash[a2[i]] !== true) {
                 hash[a2[i]] = true;
                 arr[arr.length] = a2[i];
@@ -54,7 +57,9 @@ $(document).ready(function() {
     function updateResults() {
         var maybe_values = [];
         var sure_values = [];
-        for (var i = 0; i < currentTiles.length; i++) {
+        var i = 0;
+        var l = currentTiles.length;
+        for (; i < l; i++) {
             if (currentTiles[i].text_mode) {
                 maybe_values.push(String.fromCharCode(currentTiles[i].val));
             } else {
@@ -64,23 +69,32 @@ $(document).ready(function() {
         sure_values = sure_values.join('');
         var combs = combinations(maybe_values);
         var joined = [];
-        for (var i = 0; i < combs.length; i++) {
+        l = combs.length;
+        for (i = 0; i < l; i++) {
             joined.push(combs[i].join('') + sure_values);
         }
         var perms = [];
-        for (var i = 0; i < joined.length; i++) {
+        l = joined.length;
+        for (i = 0; i < l; i++) {
             perms = merge(perms, Array.from(permute(joined[i].split(''))).map(perm => perm.join('')));
         }
         var final = [];
-        for (var i = 0; i < perms.length; i++) {
+        l = perms.length;
+        for (i = 0; i < l; i++) {
             if (en_dict[perms[i].toLowerCase()]) {
                 final.push(perms[i]);
             }
         }
-        document.getElementById("results").innerHTML = '<center><ul class="list"><li>' + final.join('</li><li>') + '</li></ul></center>';
+
+        if (final.length != 0) {
+            document.getElementById("results").innerHTML = '<center><ul class="list"><li>' + final.join('</li><li>') + '</li></ul></center>';
+        } else {
+            document.getElementById("results").innerHTML = '<center>No possible words.</center>';
+        }
     }
 
     $.getScript('js/en_dict.js', function() {
+        document.getElementById("loading").innerHTML = '';
         var textMode = true;
         $(document).keydown(function(e) {
             if (e.which >= 65 && e.which <= 90 && currentTiles.length < 12) {
