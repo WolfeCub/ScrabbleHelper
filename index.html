@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Scrabble Solver</title>
+        <meta name="author" content="Joshua Wolfe">
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+        <script src="jquery-3.2.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+        <link rel="stylesheet" type="text/css" href="style/popup.css">
+    </head>
+
+    <body>
+        <h1 class="title">Scrabble Helper</h1>
+        <div id="loading"></div>
+        <div id="activeTileContainer" class="activeTileContainer"></div>
+        <div id="results"></div>
+        <a onclick="clearAll()" class="btn" style="position:absolute;top:3px;right:3px;">Reset</a>
+        <a onclick="clearAll()" class="modal-toggle" style="position:absolute;top:3px;left:3px;">?</a>
+        <script src="js/main.js"></script>
+
+        <div class="modal">
+            <div class="modal-overlay modal-toggle"></div>
+            <div class="modal-wrapper modal-transition">
+                <div class="modal-header">
+                    <h2 class="modal-heading">Help</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-content">
+                        <li>Type text normally to enter optional letters.</li>
+                        <li>Press space to toggle into required letters mode.</li>
+                        <li>Click on a letter to remove it.</li>
+                        <li>Press enter to generate results.</li>
+                        <li>Backspace resets all letters and results.</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>
